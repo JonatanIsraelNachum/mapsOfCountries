@@ -11,7 +11,7 @@ body {
     color: #333;
 }
 .container{
-    min-height: 800px;
+    min-height: 1000px;
     min-width: 1550px;
     background-image: url('gif/globus.jpg');
     background-repeat: no-repeat;
@@ -64,7 +64,7 @@ body {
 /* עיצוב כרטיס מדינה */
 .country-card {
     background-color: #fff;
-    width: 250px;
+    width: 350px;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
