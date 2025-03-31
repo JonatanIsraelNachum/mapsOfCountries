@@ -11,22 +11,20 @@ const showDefaultCards = async () => {
     const validCountries = countries.filter(country => country !== null);
     displayCountries(validCountries, false);  // הצגת רק כרטיסים בלי המפה
 };
-
-// חיפוש מדינה
-searchButton.addEventListener('click', async () => {
+const searchCountry = async ()=>{
     const query = searchInput.value.trim();
     if (query === '') return showError('Please enter a country name');
-
+    
     const countries = await searchCountries(query);
     if (countries.length > 0) {
-        displayCountry(countries[0], true);  // הצגת כרטיסים בלבד
+        displayCountry(countries[0], true);
     } else {
         showError('No countries found');
     }
-});
+}
 
 // הצגת רשימה של כרטיסים למדינות
-    const displayCountries = async (countries, showMap = false) => {
+const displayCountries = async (countries, showMap = false) => {
     const countryContainer = document.querySelector('#country-container');
     countryContainer.innerHTML = ''; // ניקוי תצוגה לפני הצגת מדינות חדשות
     document.querySelector("#spinner").style.display = "none"
@@ -35,8 +33,8 @@ searchButton.addEventListener('click', async () => {
         const countryCard = document.createElement('div');
         countryCard.classList.add('country-card');
         countryCard.innerHTML = `
-            <h2>${name.common}</h2>
-            <img src="${flags.png}" alt="Flag of ${name.common}" width="150">
+        <h2>${name.common}</h2>
+        <img src="${flags.png}" alt="Flag of ${name.common}" width="150">
         `;
         countryCard.addEventListener('click', () => {
             displayCountry(country, true);  // הצגת המפה עם כרטיס המדינה
@@ -69,5 +67,12 @@ window.onload = async () => {
     searchInput.addEventListener('input', (e) => {
         populateDatalist(e.target.value);
     });
-};
-
+    // חיפוש מדינה
+    searchInput.addEventListener("keydown",(e)=>{
+        if (e.key === "Enter") {
+            searchCountry()
+        }});
+        searchButton.addEventListener('click', searchCountry);
+    };
+    
+    
