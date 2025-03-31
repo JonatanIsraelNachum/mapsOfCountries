@@ -10,9 +10,14 @@ body {
     background-color: #f4f4f9;
     color: #333;
 }
-
-
-
+.container{
+    min-height: 800px;
+    min-width: 1550px;
+    background-image: url('gif/globus.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 /* nav-container */
 #nav-container {
     background-color: #333;
@@ -26,7 +31,6 @@ body {
     justify-content: center;
     gap: 15px;
 }
-
 #nav-container button {
     background-color: transparent;
     color: #fff;
@@ -48,14 +52,6 @@ body {
     outline: none;
     border-color: #4CAF50;
 }
-
-
-.container_card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 /* תצוגת כרטיסים */
 #country-container {
     display: flex;
@@ -87,12 +83,14 @@ body {
 }
 
 .country-card h2 {
+    padding-left: 10px;
     font-size: 20px;
-    color: #333;
+    color: #5585b6;
     margin: 15px 0 10px;
 }
 
 .country-card p {
+    padding-left: 10px;
     font-size: 14px;
     color: #555;
     line-height: 1.6;
@@ -143,51 +141,12 @@ body {
 #search-btn:hover {
     background-color: #0056b3;
 }
-
-/* כרטיס שמציג פרטי מדינה */
-.country-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.country-details img {
-    width: 150px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.country-details p {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-.country-details button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.country-details button:hover {
-    background-color: #0056b3;
-}
-
 /* עיצוב המפה */
 #map {
     height: 400px;
     width: 50%;
     border-radius: 15px;
     margin: 20px auto;
-}
-
-/* העיצוב הכללי */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
 }
 #error{
     display: none;
