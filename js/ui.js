@@ -64,7 +64,7 @@ const displayMap = ([lat, lon], countryName = "") => {
     if (map) map.remove();
     map = L.map('map', {
         center: [lat, lon],
-        zoom: 10,
+        zoom: 7,
         scrollWheelZoom: false // מונע גלילה אוטומטית
     });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
