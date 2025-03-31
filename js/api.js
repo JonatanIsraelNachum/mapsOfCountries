@@ -1,7 +1,7 @@
 const baseURL = 'https://restcountries.com/v3.1';
 
 // שליפת נתונים מה-API
-async function getCountryData(countryName) {
+const getCountryData = async (countryName)=> {
     try {
         const res = await fetch(`${baseURL}/name/${countryName}?fullText=true`);
         if (!res.ok) throw new Error('Country not found');
@@ -12,25 +12,22 @@ async function getCountryData(countryName) {
         return null;
     }
 }
-
 // שליפת מדינות שכנות
-async function getNeighborNames(borders) {
+const getNeighborNames = async (borders) => {
     if (!borders) return [];
     const promises = borders.map(code => fetch(`${baseURL}/alpha/${code}`).then(res => res.json()));
     const results = await Promise.all(promises);
     return results.map(data => data[0].name.common);
 }
-
 // חיפוש מדינה
-async function searchCountries(query) {  
+const searchCountries = async (query) => {  
     const countries = await fetch(`${baseURL}/name/${query}?fullText=true`)
         .then(res => res.json())
         .catch(() => []);
     return countries;
 }
-
 // שליפת שמות המדינות מה-API
-async function fetchCountryNames() {
+const fetchCountryNames = async () => {
     try {
         const res = await fetch('https://restcountries.com/v3.1/all');
         const countries = await res.json();

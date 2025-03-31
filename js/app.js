@@ -26,7 +26,7 @@ searchButton.addEventListener('click', async () => {
 });
 
 // הצגת רשימה של כרטיסים למדינות
-function displayCountries(countries, showMap = false) {
+    const displayCountries = async (countries, showMap = false) => {
     const countryContainer = document.querySelector('#country-container');
     countryContainer.innerHTML = ''; // ניקוי תצוגה לפני הצגת מדינות חדשות
     document.querySelector("#spinner").style.display = "none"
@@ -38,40 +38,33 @@ function displayCountries(countries, showMap = false) {
             <h2>${name.common}</h2>
             <img src="${flags.png}" alt="Flag of ${name.common}" width="150">
         `;
-
         countryCard.addEventListener('click', () => {
             displayCountry(country, true);  // הצגת המפה עם כרטיס המדינה
         });
-
         countryContainer.appendChild(countryCard);
     });
 }
 
-document.getElementById('home-btn').addEventListener('click', showDefaultCards);
-document.getElementById('israel-btn').addEventListener('click', async () => {
-    const country = await getCountryData('Israel');
-    displayCountry(country);
-});
-document.getElementById('usa-btn').addEventListener('click', async () => {
-    const country = await getCountryData('United States');
-    displayCountry(country);
-});
-document.getElementById('thailand-btn').addEventListener('click', async () => {
-    const country = await getCountryData('Thailand');
-    displayCountry(country);
-});
-document.getElementById('france-btn').addEventListener('click', async () => {
-    const country = await getCountryData('France');
-    displayCountry(country);
-});
-document.getElementById('germany-btn').addEventListener('click', async () => {
-    const country = await getCountryData('Germany');
-    displayCountry(country);
-});
+document.querySelector('#home-btn').addEventListener('click', showDefaultCards);
 
+const listiner_btn_country = async (name)=>{
+    document.querySelector(`#${name}-btn`).addEventListener('click', async () => {
+        if (name == 'USA') {name = `United States`}
+        const country = await getCountryData(name);
+        displayCountry(country);
+    });
+}
+const listiner_btn_countries = async ()=>{
+    listiner_btn_country('Israel')
+    listiner_btn_country('USA')
+    listiner_btn_country('Thailand')
+    listiner_btn_country('France')
+    listiner_btn_country('Germany')
+}
 // הצגת מדינות ברירת מחדל
 window.onload = async () => {
     showDefaultCards();
+    listiner_btn_countries()
     // האזנה להקלדה באינפוט ועדכון ההשלמות בזמן אמת
     searchInput.addEventListener('input', (e) => {
         populateDatalist(e.target.value);
